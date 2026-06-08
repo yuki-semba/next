@@ -1,65 +1,47 @@
-import Image from "next/image";
+'use client';
+
+import React from 'react';
+import { Typography, Grid, Card, CardContent, CardActionArea, Box } from '@mui/material';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import Link from 'next/link';
+
+const apps = [
+  { title: '購買発注 承認待ち一覧', desc: 'SAP S/4HANAから取得したPOの一覧確認および承認・却下処理を行います。', path: '/po-list', icon: <ReceiptIcon sx={{ fontSize: 40, color: '#0a6ed1' }} /> },
+  { title: 'プラント別 在庫一覧', desc: '各工場・倉庫のリアルタイム在庫数を集計・確認します。', path: '/stock-list', icon: <InventoryIcon sx={{ fontSize: 40, color: '#0a6ed1' }} /> },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <Box>
+      <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1, color: 'primary.dark' }}>
+        ようこそ、業務ポータルへ
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+        利用するアプリケーションを選択してください。
+      </Typography>
+
+      <Grid container spacing={3}>
+        {apps.map((app, index) => (
+          <Grid xs={12} sm={6} key={index}>
+            <Card elevation={2} sx={{ borderRadius: 2, '&:hover': { boxShadow: 4 } }}>
+              <CardActionArea component={Link} href={app.path} sx={{ p: 2 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  {app.icon}
+                  <Typography variant="h6" sx={{ ml: 2, fontWeight: 'bold' }}>
+                    {app.title}
+                  </Typography>
+                </Box>
+                <CardContent sx={{ p: 0, pl: 7 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    {app.desc}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

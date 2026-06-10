@@ -8,6 +8,8 @@ import theme from './theme';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import GroupIcon from '@mui/icons-material/Group'; 
+import CloudIcon from '@mui/icons-material/Cloud';
 import Link from 'next/link';
 
 const drawerWidth = 240;
@@ -57,6 +59,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <ListItemButton component={Link} href="/stock-list">
                         <ListItemIcon><InventoryIcon color="primary" /></ListItemIcon>
                         <ListItemText primary="在庫一覧" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} href="/vendor-list">
+                        <ListItemIcon><GroupIcon color="primary" /></ListItemIcon> {/* ※最上部で import GroupIcon from '@mui/icons-material/Group'; を足してください */}
+                        <ListItemText primary="仕入先検索" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton component={Link} href="/price-search">
+                        <ListItemIcon><CloudIcon color="primary" /></ListItemIcon>
+                        <ListItemText primary="品目価格照会" />
                       </ListItemButton>
                     </ListItem>
                   </List>

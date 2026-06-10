@@ -4,11 +4,13 @@ import React from 'react';
 import { Typography, Grid, Card, CardContent, CardActionArea, Box } from '@mui/material';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import GroupIcon from '@mui/icons-material/Group'; 
 import Link from 'next/link';
 
 const apps = [
   { title: '購買発注 承認待ち一覧', desc: 'SAP S/4HANAから取得したPOの一覧確認および承認・却下処理を行います。', path: '/po-list', icon: <ReceiptIcon sx={{ fontSize: 40, color: '#0a6ed1' }} /> },
   { title: 'プラント別 在庫一覧', desc: '各工場・倉庫のリアルタイム在庫数を集計・確認します。', path: '/stock-list', icon: <InventoryIcon sx={{ fontSize: 40, color: '#0a6ed1' }} /> },
+  { title: '仕入先検索', desc: '仕入先情報を検索・確認します。', path: '/vendor-list', icon: <GroupIcon sx={{ fontSize: 40, color: '#0a6ed1' }} /> },
 ];
 
 export default function Home() {

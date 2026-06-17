@@ -14,7 +14,8 @@ import { defineConfig, devices } from '@playwright/test';
  */
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './tests/e2e',
+  outputDir: './tests/test-results',
 
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -28,14 +29,15 @@ export default defineConfig({
    /* Opt out of parallel tests on CI. */
   workers: 1, // WSLの負荷を抑えるため、まずは1つで確実に動かす
 
-  globalSetup: './scripts/reset-coverage.ts',
-  globalTeardown: './scripts/collect-coverage.ts',
+  globalSetup: require.resolve('./tests/scripts/global-setup.ts'),
+  globalTeardown: require.resolve('./tests/scripts/global-teardown.ts'),
 
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   // reporter: 'html',
   reporter: [
-    ['html'],  ['list']
+    ['html', { outputFolder: 'tests/playwright-report' }],
+    ['list']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

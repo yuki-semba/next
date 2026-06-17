@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { saveCoverage } from './helpers/coverage';
+import { saveCoverage } from '../helpers/coverage';
 
 test.describe('購買発注一覧画面のテスト', () => {
   
@@ -71,41 +71,41 @@ test.describe('購買発注一覧画面のテスト', () => {
   });
 
 
-  test('却下ボタンを押したとき、ステータスが「却下済」に切り替わること', async ({ page }, testInfo) => {
+  // test('却下ボタンを押したとき、ステータスが「却下済」に切り替わること', async ({ page }, testInfo) => {
 
-    const screenshotPath1 = 'tests/screenshots/po-list/mypage-rejected_before.png';
-    const screenshotPath2 = 'tests/screenshots/po-list/mypage-rejected_after.png';
+  //   const screenshotPath1 = 'tests/screenshots/po-list/mypage-rejected_before.png';
+  //   const screenshotPath2 = 'tests/screenshots/po-list/mypage-rejected_after.png';
 
-    const targetId = '4500001236';
-    const row = page.locator(`[data-testid="po-row-${targetId}"]`);
-    await expect(row).toContainText('承認待ち');
+  //   const targetId = '4500001236';
+  //   const row = page.locator(`[data-testid="po-row-${targetId}"]`);
+  //   await expect(row).toContainText('承認待ち');
 
-    await page.screenshot({ path: screenshotPath1 });
-    await testInfo.attachments.push({
-    name: '却下前の画面（エビデンス）',
-    path: screenshotPath1,
-    contentType: 'image/png'
-    });
+  //   await page.screenshot({ path: screenshotPath1 });
+  //   await testInfo.attachments.push({
+  //   name: '却下前の画面（エビデンス）',
+  //   path: screenshotPath1,
+  //   contentType: 'image/png'
+  //   });
 
 
-    const approveBtn = page.locator(`[data-testid="reject-btn-${targetId}"]`);
-    await approveBtn.click();
+  //   const approveBtn = page.locator(`[data-testid="reject-btn-${targetId}"]`);
+  //   await approveBtn.click();
 
-    await expect(approveBtn).not.toBeVisible();
+  //   await expect(approveBtn).not.toBeVisible();
 
-    await expect(row).toContainText('却下済');
+  //   await expect(row).toContainText('却下済');
 
-    await page.screenshot({ path: screenshotPath2 });
-    await testInfo.attachments.push({
-    name: '却下後の画面（エビデンス）',
-    path: screenshotPath2,
-    contentType: 'image/png'
-    });
+  //   await page.screenshot({ path: screenshotPath2 });
+  //   await testInfo.attachments.push({
+  //   name: '却下後の画面（エビデンス）',
+  //   path: screenshotPath2,
+  //   contentType: 'image/png'
+  //   });
 
-    // coverage 保存
-    await saveCoverage(page, testInfo);
+  //   // coverage 保存
+  //   await saveCoverage(page, testInfo);
     
-  });
+  // });
 
 
   

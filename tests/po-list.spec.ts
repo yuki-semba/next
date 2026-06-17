@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { saveCoverage } from './helpers/coverage';
 
 test.describe('購買発注一覧画面のテスト', () => {
   
@@ -27,6 +28,10 @@ test.describe('購買発注一覧画面のテスト', () => {
     path: screenshotPath,
     contentType: 'image/png'
     });
+
+    // coverage 保存
+    await saveCoverage(page, testInfo);
+
   });
 
   test('承認ボタンを押したとき、ステータスが「承認済」に切り替わること', async ({ page }, testInfo) => {
@@ -59,5 +64,10 @@ test.describe('購買発注一覧画面のテスト', () => {
     path: screenshotPath2,
     contentType: 'image/png'
     });
+
+    // coverage 保存
+    await saveCoverage(page, testInfo);
+    
   });
+  
 });
